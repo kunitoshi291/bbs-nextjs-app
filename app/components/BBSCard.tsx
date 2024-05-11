@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import { BBSData } from "../types/types";
 
 interface BBSDataProps {
@@ -24,8 +24,11 @@ const BBSCard = ({ bbsData }: BBSDataProps) => {
       </CardHeader>
       <CardContent>{content}</CardContent>
       <CardFooter className='flex justify-between'>
-        <Link href={`/bbs-posts/${id}`} className='text-blue-500'>
-          Read More
+        <Link
+          href={`/bbs-posts/${id}`}
+          className='text-blue-400 hover:text-blue-600 duration-200'
+        >
+          More Read
         </Link>
       </CardFooter>
     </Card>
