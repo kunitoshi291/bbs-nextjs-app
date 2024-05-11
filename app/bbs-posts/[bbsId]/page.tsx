@@ -1,5 +1,6 @@
 import React from "react";
 import { BBSData } from "@/app/types/types";
+import Link from "next/link";
 
 async function getDetailBBSData(id: number) {
   const response = await fetch(`http://localhost:3000/api/post/${id}`, {
@@ -12,9 +13,27 @@ async function getDetailBBSData(id: number) {
 
 const BBSDetailPage = async ({ params }: { params: { bbsId: number } }) => {
   const bbsDetailData = await getDetailBBSData(params.bbsId);
-  console.log(bbsDetailData);
+  const { title, content, username } = bbsDetailData;
 
-  return <div>BBSDetailPage</div>;
+  return (
+    <div className='mx-auto max-w-4xl p-4'>
+      <div className='mb-8'>
+        <h1 className='text-2xl font-semibold'>{title}</h1>
+        <p className='tex-gray-700'>{username}</p>
+      </div>
+      <div>
+        <p className='text-gray-900'>{content}</p>
+      </div>
+      <div className='flex justify-auto p-4'>
+        <Link
+          href={"/"}
+          className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition-colors duration-300'
+        >
+          戻る
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default BBSDetailPage;
